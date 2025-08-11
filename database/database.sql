@@ -10,7 +10,6 @@ CREATE TABLE usuario (
     data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Create a new table 'TableName' with a primary key and columns
 CREATE TABLE enderco (
     id SERIAL PRIMARY KEY,
     cep VARCHAR(8) NOT NULL,
@@ -34,8 +33,14 @@ CREATE TABLE produto (
 CREATE TABLE pedido (
     id SERIAL PRIMARY KEY,
     usuario_id INT NOT NULL,
+    nome_usuario VARCHAR(100) NOT NULL,
+    cep VARCHAR(8) NOT NULL,
+    produto_id INT NOT NULL,
+    nome_produto VARCHAR(100) NOT NULL,
     data_pedido TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     status VARCHAR(50) NOT NULL,
-    total DECIMAL(10, 2) NOT NULL,
-    FOREIGN KEY (usuario_id) REFERENCES usuario(id) ON DELETE CASCADE
+    quantidade INT NOT NULL,
+    valor_total DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES usuario(id) ON DELETE CASCADE,
+    FOREIGN KEY (produto_id) REFERENCES produto(id) ON DELETE CASCADE
 );

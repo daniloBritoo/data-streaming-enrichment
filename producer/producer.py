@@ -14,9 +14,7 @@ def generate_buy_event():
             "quantidade": random.randint(1,50)
         }
         p.send('ecommerce_buys', data)
-
         p.flush()
-        print("evento enviado")
         time.sleep(1)
 
 generate_buy_event()
